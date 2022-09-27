@@ -15,6 +15,8 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
   jar_path: 'initial/build/libs/rest-soap-service-0.1.0.jar'
+  aci_name: restsoapservice
+  aci_rg: raizen_apim_translate_demo
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -56,3 +58,18 @@ stages:
         tags: |
           latest
           $(tag)
+
+- stage: CD
+  displayName: Deploying container (CD)
+  jobs:
+  - job: CD
+    displayName: Build and Push image
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'andreandrade_internal(29eb732c-7f74-4314-82af-336bfd45139d)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az container restart --name $(aci_name)  --resource-group $(aci_rg)'
