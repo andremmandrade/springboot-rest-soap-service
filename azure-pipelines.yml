@@ -39,6 +39,15 @@ stages:
         jdkVersionOption: '1.8'
         sonarQubeRunAnalysis: false
         spotBugsAnalysis: false
+        
+    - task: CmdLine@2
+      inputs:
+        script: |
+          ls $(Build.SourcesDirectory)/initial
+          
+          ls $(Build.SourcesDirectory)/initial/build
+          
+          ls $(Build.SourcesDirectory)/initial/build/libs'
     
     - task: Docker@2
       inputs:
