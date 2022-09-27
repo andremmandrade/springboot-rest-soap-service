@@ -46,7 +46,7 @@ stages:
         repository: '$(imageRepository)'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        arguments: '--build-arg JAR_FILE=$(jar_path) -t $(imageRepository):$(tag) -t $(imageRepository):latest'
+        arguments: '--build-arg JAR_FILE=$(jar_path) -t $(containerRegistry)/$(imageRepository):$(tag) -t $(containerRegistry)/$(imageRepository):latest'
         
     - task: Docker@2
       inputs:
