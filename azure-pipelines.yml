@@ -60,6 +60,6 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'andreandrade'
-        repository: '$(imageRepository):$(tag)'
+        repository: '$(imageRepository)'
         command: 'push'
 
