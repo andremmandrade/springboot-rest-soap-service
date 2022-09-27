@@ -30,7 +30,7 @@ stages:
     steps:
     - task: Gradle@3
       inputs:
-        gradleWrapperFile: 'gradlew'
+        gradleWrapperFile: '$(Build.SourcesDirectory)/initial/gradlew'
         workingDirectory: '$(Build.SourcesDirectory)/initial'
         tasks: 'build'
         publishJUnitResults: true
