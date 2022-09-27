@@ -14,7 +14,7 @@ variables:
   containerRegistry: 'andreandrade.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-  jar_path: '$(Build.SourcesDirectory)/initial/build/libs/rest-soap-service-0.1.0.jar'
+  jar_path: 'initial/build/libs/rest-soap-service-0.1.0.jar'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
