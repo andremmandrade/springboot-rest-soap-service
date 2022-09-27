@@ -46,7 +46,7 @@ stages:
         repository: '$(imageRepository)'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        arguments: 'JAR_FILE=$(jar_path) -t $(tag)'
+        arguments: '--build-arg JAR_FILE=$(jar_path) -t $(tag)'
         
     - task: Docker@2
       inputs:
