@@ -20,11 +20,11 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Build
-  displayName: Build and push stage
+- stage: CI
+  displayName: Build and push stage (CI)
   jobs:
-  - job: Build
-    displayName: Build
+  - job: CI
+    displayName: Build and Push image
     pool:
       vmImage: $(vmImageName)
     steps:
@@ -39,15 +39,6 @@ stages:
         jdkVersionOption: '1.8'
         sonarQubeRunAnalysis: false
         spotBugsAnalysis: false
-        
-    - task: CmdLine@2
-      inputs:
-        script: |
-          ls $(Build.SourcesDirectory)/initial
-          
-          ls $(Build.SourcesDirectory)/initial/build
-          
-          ls $(Build.SourcesDirectory)/initial/build/libs
     
     - task: Docker@2
       inputs:
@@ -55,7 +46,7 @@ stages:
         repository: '$(imageRepository)'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        arguments: '--build-arg JAR_FILE=$(jar_path) -t $(tag)'
+        arguments: '--build-arg JAR_FILE=$(jar_path) -t $(tag) -t latest'
         
     - task: Docker@2
       inputs:
