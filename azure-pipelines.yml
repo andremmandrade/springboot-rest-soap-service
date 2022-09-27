@@ -61,6 +61,8 @@ stages:
 
 - stage: CD
   displayName: Deploying container (CD)
+  dependsOn: CI
+  condition: succeeded('CI')
   jobs:
   - job: CD
     displayName: Build and Push image
