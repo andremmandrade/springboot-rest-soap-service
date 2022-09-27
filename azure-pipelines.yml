@@ -46,11 +46,13 @@ stages:
         repository: '$(imageRepository)'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        arguments: '--build-arg JAR_FILE=$(jar_path) -t $(tag) -t latest'
+        arguments: '--build-arg JAR_FILE=$(jar_path)'
         
     - task: Docker@2
       inputs:
         containerRegistry: 'andreandrade'
         repository: '$(imageRepository)'
         command: 'push'
-
+        tags: |
+          latest
+          $(tag)
