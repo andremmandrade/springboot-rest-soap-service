@@ -17,7 +17,7 @@ import io.spring.guides.gs_web_service.Country;
 @RestController
 public class ControllerRS {
 
-	private static final String template = "Ok, %s!";
+	private static final String template = "DevOps4Women ready, %s!";
 	private final AtomicLong counter = new AtomicLong();
 	private CountryRepository countryRepository;
 
