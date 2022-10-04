@@ -39,10 +39,10 @@ jobs:
     - name: Azure Container Registry Build
       uses: Azure/acr-build@v1
       with:
-        service_principal: 'andreandrade'
-        service_principal_password: '3XOQXA4A2RKpRDcwu+NsXRTZJVKKqlGw'
-        tenant: '29eb732c-7f74-4314-82af-336bfd45139d'
-        registry: 'andreandrade.azurecr.io'
+        service_principal: ${{ secrets.ACR_SP }}
+        service_principal_password: ${{ secrets.ACR_SP_PWD }}
+        tenant: ${{ secrets.ACR_TENANT }}
+        registry: ${{ secrets.ACR_URL }}
         repository: 'demos/springboot/rest-soap-service'
         image: 'rest-soap-service'
         dockerfile: 'Dockerfile'
