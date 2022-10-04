@@ -46,6 +46,6 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v3.1.1
       with:
-        build-args: JAR_FILE='${{ github.GITHUB_WORKSPACE }}'/initial/build/libs/rest-soap-service-0.1.0.jar
+        build-args: JAR_FILE='${{ github.workspace }}'/initial/build/libs/rest-soap-service-0.1.0.jar
         push: false
         tags: latest
