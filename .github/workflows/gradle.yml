@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
     - uses: actions/checkout@v3
     - name: Set up JDK 8
       uses: actions/setup-java@v3
@@ -49,5 +50,15 @@ jobs:
         context: ${{ github.workspace }}
         build-args: JAR_FILE=initial/build/libs/rest-soap-service-0.1.0.jar
         push: true
-        tags: 
+        tags: |
           ${{ secrets.ACR_URL }}/demos/springboot/rest-soap-service:latest
+          
+    - name: Azure Login
+      uses: Azure/login@v1.4.6
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: Azure CLI Action
+      uses: Azure/cli@v1
+      with:
+        inlineScript: az container restart --name ${{ secrets.ACI_NAME }}  --resource-group ${{ secrets.ACI_RG }}
