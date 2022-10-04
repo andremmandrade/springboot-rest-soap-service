@@ -49,4 +49,5 @@ jobs:
         context: ${{ github.workspace }}
         build-args: JAR_FILE=initial/build/libs/rest-soap-service-0.1.0.jar
         push: false
-        tags: latest
+        tags: 
+          ${{ secrets.ACR_URL }}/demos/springboot/rest-soap-service:latest
